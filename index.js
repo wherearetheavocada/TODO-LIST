@@ -30,7 +30,7 @@ const allTodo = document.createElement('p');
 allTodo.textContent = 'All: 1';
 allTodo.classList.add('allTodo');
 
-const completed = document.createElement('div');
+const completed = document.createElement('p');
 completed.textContent = 'Completed: 1';
 completed.classList.add('completed');
 
@@ -49,6 +49,9 @@ search.classList.add('search');
 
 root.append(navigatorSecondSection)
 navigatorSecondSection.append(allTodo, completed, btnShowAll, btnShowCompleted, search)
+
+const todo = document.createElement('div');
+todo.classList.add('todo');
 
 const todoEl = document.createElement('div');
 todoEl.classList.add('todoEl');
@@ -72,8 +75,9 @@ const date = document.createElement('p');
 date.textContent = 'Date';
 date.classList.add('date');
 
+todo.append(todoEl)
 todoEl.append(todoElSection);
 todoElSection.append(btnX, date);
 
-root.append(todoEl);
+root.append(todo);
 todoEl.append(btnPlus, todoText, todoElSection);
