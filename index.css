@@ -1,0 +1,164 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+#root{
+	width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+	background-color: #d5d5d5;
+	border: none;
+	border-radius: 10px;
+	border: 2px solid black;
+	margin-top: 50px;
+}
+.navigatorFirstSection{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	margin-bottom: 20px;
+	justify-content:center ;
+}
+.btnDelAll{
+	width: 100px;
+	background-color: #18e7cf;
+	color: #5e5e5f;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	border: 2px solid black;
+	cursor: pointer;
+}
+.btnDelLast{
+	width: 100px;
+	background-color: #18e7cf;
+	color: #5e5e5f;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	border: 2px solid black;
+	cursor: pointer;
+}
+.input{
+	background-color: #ffffff;
+	color: #5e5e5f;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	border: 2px solid black;
+	cursor: pointer;
+}
+.search:focus {
+	outline: none; /* Убираем видимую рамку фокуса */
+}
+.btnAdd{
+	width: 100px;	
+	background-color: #18e7cf;
+	color: #5e5e5f;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	border: 2px solid black;
+	cursor: pointer;
+}
+.navigatorSecondSection{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+.allTodo{
+	color: #5e5e5f;
+}
+.completed{
+	color: #5e5e5f;
+}
+.btnShowAll{
+	color: #5e5e5f;
+}
+.btnShowCompleted{
+	color: #5e5e5f;
+}
+.search{
+	color: #5e5e5f;
+}
+.todoEl{
+	width: 400px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	margin: 0 25px 15px 25px;
+  justify-content: center; /* Центрирование по горизонтали */
+	border: none;
+	border-radius: 10px;
+	border: 2px solid black;
+	padding: 20px 10px 20px 10px;
+  align-items: center; /* Центрирование элементов по вертикали */
+}
+.btnPlus{
+	width: 30px;
+	height: 20px;	
+	background-color: #18e7cf;
+	color: #5e5e5f;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	border: 2px solid black;
+	cursor: pointer;
+	text-align: center;
+	line-height: 1px; 
+  align-items: center; /* Центрирование текста по вертикали */
+  justify-content: center; /* Центрирование текста по горизонтали */
+}
+.todoText{
+	color: #5e5e5f;
+	width: 100%;
+	min-height: 50px; 
+	background-color: #ffffff;
+	padding: 0;
+	margin: 0;
+	border-radius: 5px;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+.todoElSection{
+  width: 90px; /* Ограничение ширины секции */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Уменьшен разрыв между элементами */
+  align-items: center; /* Центрирование содержимого по горизонтали */
+  overflow: hidden; /* Прячем избыточный контент */
+  text-overflow: ellipsis; /* Точки для длинного текста */
+}
+.btnX{
+	position: relative; /* Элемент будет сдвигаться относительно его исходной позиции */
+  left: 12px; /* Сдвигаем элемент на 50px вправо */
+	width: 30px;
+	height: 20px;	
+	background-color: #18e7cf;
+	color: #5e5e5f;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	border: 2px solid black;
+	cursor: pointer;
+	text-align: center;
+	line-height: 1px; 
+  align-items: center; /* Центрирование текста по вертикали */
+  justify-content: center; /* Центрирование текста по горизонтали */
+}
+.date{
+	color: #5e5e5f;
+  background-color: #ffffff;
+  padding: 5px 10px; 
+  margin: 0;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  justify-content: center; 
+  text-align: center; 
+  word-wrap: break-word; /* Перенос длинных слов */
+  overflow: hidden; /* Прячем содержимое за пределами элемента */
+  text-overflow: ellipsis; /* Ставим троеточие для длинного текста */
+}
