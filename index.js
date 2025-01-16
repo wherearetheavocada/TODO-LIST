@@ -65,9 +65,9 @@ btnAdd.addEventListener('click', () => {
     const todoEl = document.createElement('div');
     todoEl.classList.add('todoEl');
 
-    const btnPlus = document.createElement('button');
-    btnPlus.textContent = "\u2713";
-    btnPlus.classList.add('btnPlus');
+    const btnColor = document.createElement('button');
+    btnColor.textContent = "\u2713";
+    btnColor.classList.add('btnColor');
 
     const todoText = document.createElement('p');
     todoText.textContent = todoTextValue;
@@ -85,7 +85,7 @@ btnAdd.addEventListener('click', () => {
     date.classList.add('date');
 
     todo.append(todoEl);
-    todoEl.append(btnPlus, todoText, todoElSection);
+    todoEl.append(btnColor, todoText, todoElSection);
     todoElSection.append(btnDelCurTodo, date);
 
     root.append(todo);
@@ -108,6 +108,13 @@ root.addEventListener('click', (event) => {
       updateTodoCount();
     }
   }
+
+  if (event.target.classList.contains('btnColor')) {
+    const currentTodo = event.target.closest('.todoEl');
+    if (currentTodo) {
+      currentTodo.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    }
+  }
 });
 
 btnDelAll.addEventListener('click', () => {
@@ -125,4 +132,29 @@ btnDelLast.addEventListener('click', () => {
     todoCount--;
     updateTodoCount();
   }
+});
+
+search.addEventListener('input', (event) => {
+  const searchValue = event.target.value.toLowerCase(); // Получаем введенный текст в нижнем регистре
+  const todos = document.querySelectorAll('.todo'); 
+
+  todos.forEach((todo) => {
+    const todoText = todo.querySelector('.todoText'); 
+    if (todoText) {
+      const text = todoText.textContent.toLowerCase(); // Текст внутри todoText в нижнем регистре
+      if (text.includes(searchValue)) {
+        todo.style.display = 'block'; // Показываем, если текст соответствует
+				todo.style.display = 'flex';
+      } else {
+        todo.style.display = 'none'; // Скрываем, если текст не соответствует
+      }
+    }
+  });
+});
+
+btnShowAll.addEventListener('click', () => {
+  const todos = document.querySelectorAll('.todo'); // Получаем все задачи
+  todos.forEach((todo) => {
+    todo.style.display = 'flex'; // Показываем каждую задачу
+  });
 });

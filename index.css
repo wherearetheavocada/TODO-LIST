@@ -124,7 +124,7 @@ body{
 	padding: 20px 10px 20px 10px;
   align-items: center; /* Центрирование элементов по вертикали */
 }
-.btnPlus{
+.btnColor{
 	width: 30px;
 	height: 20px;	
 	background-color: #18e7cf;
