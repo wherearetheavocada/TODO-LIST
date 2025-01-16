@@ -160,7 +160,7 @@ body{
   overflow: hidden; /* Прячем избыточный контент */
   text-overflow: ellipsis; /* Точки для длинного текста */
 }
-.btnX{
+.btnDelCurTodo{
 	position: relative; /* Элемент будет сдвигаться относительно его исходной позиции */
   left: 12px; /* Сдвигаем элемент на 50px вправо */
 	width: 30px;
