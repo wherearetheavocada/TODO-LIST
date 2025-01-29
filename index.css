@@ -178,6 +178,7 @@ body{
   justify-content: center; /* Центрирование текста по горизонтали */
 }
 .date{
+	font-size: 10px;
 	color: #5e5e5f;
   background-color: #ffffff;
   padding: 5px 10px; 

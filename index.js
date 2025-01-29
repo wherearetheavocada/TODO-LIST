@@ -6,6 +6,67 @@ const updateTodoCount = () => {
   allTodo.textContent = `All: ${todoCount}`;
 };
 
+//Функция для сохранения задач в localStorage
+const saveTodosToLocalStorage  = () =>{
+const todosData = Array.from(document.querySelectorAll('.todo')).map(todo => {
+  const todoText = todo.querySelector('.todoText').textContent;
+  const date =  todo.querySelector('.date').textContent;
+  const isCompleted = todo.querySelector('.todoEl').style.backgroundColor === 'rgb(169, 223, 191)';
+
+  return {
+    text: todoText,
+    date: date,
+    isCompleted: isCompleted
+  }
+});
+localStorage.setItem('todos', JSON.stringify(todosData));
+}
+
+//Функция для создания элемента todo
+const createTodoElement = (text,date, isCompleted = false) =>{
+    const todo = document.createElement('div');
+    todo.classList.add('todo');
+
+    const todoEl = document.createElement('div');
+    todoEl.classList.add('todoEl');
+
+    const btnColor = document.createElement('button');
+    btnColor.textContent = "\u2713";
+    btnColor.classList.add('btnColor');
+    if(isCompleted){
+      todoEl.style.backgroundColor = '#A9DFBF';
+    }
+
+    const todoText = document.createElement('p');
+    todoText.textContent = text;
+    todoText.classList.add('todoText');
+
+    const todoElSection = document.createElement('div');
+    todoElSection.classList.add('todoElSection');
+
+    const btnDelCurTodo = document.createElement('button');
+    btnDelCurTodo.textContent = 'X';
+    btnDelCurTodo.classList.add('btnDelCurTodo');
+
+    const dateElement = document.createElement('p');
+    dateElement.textContent = date;
+    dateElement.classList.add('date');
+
+    todo.append(todoEl);
+    todoEl.append(btnColor, todoText, todoElSection);
+    todoElSection.append(btnDelCurTodo, dateElement);
+
+    root.append(todo);
+
+    todoCount++;
+    updateTodoCount();
+
+    btnColor.addEventListener('click', () => {
+      todoEl.style.backgroundColor = todoEl.style.backgroundColor ? '' : '#A9DFBF'; 
+      saveTodosToLocalStorage();  
+    });
+}
+
 const navigatorFirstSection = document.createElement('div');
 navigatorFirstSection.classList.add('navigatorFirstSection');
 
@@ -59,40 +120,9 @@ navigatorSecondSection.append(allTodo, completed, btnShowAll, btnShowCompleted, 
 btnAdd.addEventListener('click', () => {
   const todoTextValue = input.value.trim();
   if (todoTextValue) {
-    const todo = document.createElement('div');
-    todo.classList.add('todo');
-
-    const todoEl = document.createElement('div');
-    todoEl.classList.add('todoEl');
-
-    const btnColor = document.createElement('button');
-    btnColor.textContent = "\u2713";
-    btnColor.classList.add('btnColor');
-
-    const todoText = document.createElement('p');
-    todoText.textContent = todoTextValue;
-    todoText.classList.add('todoText');
-
-    const todoElSection = document.createElement('div');
-    todoElSection.classList.add('todoElSection');
-
-    const btnDelCurTodo = document.createElement('button');
-    btnDelCurTodo.textContent = 'X';
-    btnDelCurTodo.classList.add('btnDelCurTodo');
-
-    const date = document.createElement('p');
-    date.textContent = new Date().toLocaleString();
-    date.classList.add('date');
-
-    todo.append(todoEl);
-    todoEl.append(btnColor, todoText, todoElSection);
-    todoElSection.append(btnDelCurTodo, date);
-
-    root.append(todo);
-
-    todoCount++;
-    updateTodoCount();
-
+    const date = new Date().toLocaleString();
+    createTodoElement(todoTextValue, date)
+    saveTodosToLocalStorage()
     input.value = '';
   } else {
     alert('Please enter a todo!');
@@ -106,6 +136,7 @@ root.addEventListener('click', (event) => {
       currentTodo.remove();
       todoCount--;
       updateTodoCount();
+      saveTodosToLocalStorage();
     }
   }
 
@@ -122,6 +153,7 @@ btnDelAll.addEventListener('click', () => {
   todos.forEach(todo => todo.remove());
   todoCount = 0;
   updateTodoCount();
+  saveTodosToLocalStorage();
 });
 
 btnDelLast.addEventListener('click', () => {
@@ -131,6 +163,7 @@ btnDelLast.addEventListener('click', () => {
     lastTodo.remove();
     todoCount--;
     updateTodoCount();
+    saveTodosToLocalStorage();
   }
 });
 
@@ -158,3 +191,6 @@ btnShowAll.addEventListener('click', () => {
     todo.style.display = 'flex'; // Показываем каждую задачу
   });
 });
+
+const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+savedTodos.forEach(todo => createTodoElement(todo.text, todo.date,todo.isCompleted));
